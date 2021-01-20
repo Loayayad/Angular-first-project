@@ -1,0 +1,28 @@
+<div>
+    <form #frm="ngForm" (ngSubmit)="addProduct()">
+
+        <!-- <label>Select Category: </label>
+<select class="form-control" [(ngModel)]="prd.CateogryID">
+    <option *ngFor="let cat of CategoryList" [value]="cat.ID">{{cat.Name}}</option>
+</select>
+<div> Selected Cat ID: {{prd.CateogryID}}</div> -->
+
+      <div class="form-group">
+        <label for="prdName">Name</label>
+        <input type="text" #prdName="ngModel" [class.is-invalid]="prdName.invalid && prdName.touched" [class.is-valid]="prdName.valid"[(ngModel)]="prd.Name" required minlength="3" name="Name" id="prdName" class="form-control" placeholder="" aria-describedby="helpId">
+      </div>
+      <div class="form-group">
+        <label for="prdQuantity">Quantity</label>
+        <input type="number" [(ngModel)]="prd.Quantity" required min="1" name="Quantity" id="prdQuantity" class="form-control" placeholder="" aria-describedby="helpId">
+        
+      </div>
+      <div class="form-group">
+        <label for="prdPrice">Price</label>
+        <input type="number" [(ngModel)]="prd.Price" name="Price" required min="1" id="prdPrice" class="form-control" placeholder="" aria-describedby="helpId">
+        
+      </div>
+  
+      <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <hr>

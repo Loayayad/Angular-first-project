@@ -1,0 +1,58 @@
+<h2>Order master</h2>
+
+<br><br>
+  <a class="btn btn-primary" [routerLink]="['/NewProduct']" role="button">Add Product</a>
+<br><br>
+
+<label>Select Category: </label>
+<select class="form-control" [(ngModel)]="SelectedCatID">
+    <option *ngFor="let cat of CategoryList" [value]="cat.ID">{{cat.Name}}</option>
+</select>
+<div> Selected Cat ID: {{SelectedCatID}}</div>
+
+<div>
+    <div class="form-group">
+        <label for="">Enter your Name: </label>
+        <input #ClientName value="Client Name" type="text" class="form-control" name="cName" id="cName">
+    </div>
+</div>
+
+<hr>
+
+<div class="bg-light">
+    <app-cart-child (TotalPriceChanged)="onTotalPriceChanged($event)" [InputCatID]="SelectedCatID"></app-cart-child>
+</div>
+<hr>
+<div>
+    Total order Price:{{OrderTotalPriceFromOutput}}
+</div>
+
+<table class="table">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th>SN.</th>
+            <th> Name</th>
+            <th> Price</th>
+            <th>Available Quantity</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let prd of getProductsByCatID(); let SN=index"> -->
+            <tr *ngFor="let prd of listOfPurchase; let SN=index">
+                <td>{{SN+1}}</td>
+                <td>{{prd.productName}}</td>
+                <td>{{prd.totalPrice | currency: 'EGP'}}</td>
+                <td>{{prd.productCount}}</td>
+            </tr>
+    </tbody>
+</table>
+
+
+
+<!-- <div>
+    Tax:{{OrderTotalPriceFromOutput*14/100}}
+</div>
+<div>
+    Total with tax:{{OrderTotalPriceFromOutput+(OrderTotalPriceFromOutput*14/100)}}
+</div> -->

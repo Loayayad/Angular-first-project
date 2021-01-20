@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem; margin-left: 50px;">
+    <img class="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">ID: {{prd.ID}}</h5>
+        <h5 class="card-title">Name: {{prd.Name}}</h5>
+        <h6>Quantity: {{prd.Quantity}}</h6>
+        <h6>Price: {{prd.Price}}</h6>
+        <br>
+        <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" (click)="previousProduct()">Previous</button>
+            <button type="button" class="btn btn-secondary" (click)="nextProduct()">Next</button>
+        </div>
+        <br><br>
+        <hr>
+
+        <button class="btn btn-primary btn-block" (click)="goBack()">Back</button>
+    </div>
+</div>
+<br>

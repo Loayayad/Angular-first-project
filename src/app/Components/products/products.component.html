@@ -1,0 +1,83 @@
+<h1>Store Name: {{StoreInfo.Name}}</h1>
+<img [src]="StoreInfo.Logo" alt="">
+
+<h3 *ngIf="Discount">We offer an explicit discount of : {{Discount}}%</h3>
+
+
+<select name="cat" id="category" [(ngModel)] = "Selectedbranch">
+    <option *ngFor="let cat of ProductList" value="{{cat.ID}}">{{cat.Name}}</option>
+</select>
+<br>
+<h4>Selected Branch: {{Selectedbranch}}</h4>
+
+
+<table class="table table-light" *ngIf="StoreInfo.IsPurshased">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cat of ProductList" 
+        [ngStyle]="{'background-color':cat.Quantity ===1 ? 'yellow':'',
+                    'display':cat.Quantity < 1 ? 'none':''}">
+            <td >{{cat.CateogryID}}</td>
+            <td >{{cat.Name}}</td>
+            <td >{{cat.Quantity}}</td>
+            <td><button  class="btn btn-primary" (click)="DecreaseProduct(cat)">Buy</button></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+Client Name <input type="text" [value]="ClientName" class="form-control"><br>
+Client Name <input type="text" [(ngModel)]=ClientName class="form-control"><br>
+
+<button  class="btn btn-primary" (click)="ToggleStore()">Purshase</button>
+
+<div *ngIf ="!StoreInfo.IsPurshased" >
+    <h3>Thanks For Purchasing from our Store {{ClientName}} </h3>
+</div>
+<br>
+<br>
+<div class="row col">
+    <div class="col-4">
+        <div appHighlighted class="card m-3" style="width: 200px;">
+            <div class="card-header">
+                <img [src]="ProductList[1].Img" alt="" width="150px">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> Product: {{ProductList[1].Name}}</h5>
+                <p class="card-text"> Price: {{ProductList[1].Price  | currency}}</p>
+                <a href="#" class="btn btn-dark">Add To Cart</a>
+            </div>
+            
+        </div>
+            
+    </div>
+    
+    <div class="col-4">
+        <div class="card card-5 m-3" style="width: 200px;">
+            <div class="card-header">
+                <img [src]="ProductList[0].Img" alt="" width="150px">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> Product: {{ProductList[0].Name}}</h5>
+                <p class="card-text"> Price: {{ProductList[0].Price | currency}}</p>
+                <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<h4> Purshase Date: {{PurshaseDate | date:'mediumDate'}}</h4>
+
+<!-- Client Number <input appBlur blurColor = CreditCardNumber type="text" class="form-control"><br> -->
+
+Client Number <input appBlur type="text" class="form-control" [(ngModel)]=CreditCardNumber><br>
+
+<!-- <h6>Client Number : {{CreditCardNumber | formatCreditCard}}</h6> -->

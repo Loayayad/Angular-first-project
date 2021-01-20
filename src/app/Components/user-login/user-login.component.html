@@ -1,0 +1,21 @@
+<div>
+    <form #frm="ngForm" (ngSubmit)="login()">
+
+      <div class="form-group">
+        <label for="prdName">Name</label>
+        <input type="text" #prdName="ngModel" [class.is-invalid]="prdName.invalid && prdName.touched" 
+        [class.is-valid]="prdName.valid"[(ngModel)]="user.Name" required minlength="1" name="Name" 
+        id="prdName" class="form-control" placeholder="" aria-describedby="helpId">
+      </div>
+
+      <div class="form-group">
+        <label for="prdPassword">Password</label>
+        <input type="text" #prdPassword="ngModel" [class.is-invalid]="prdPassword.invalid && prdPassword.touched" 
+        [class.is-valid]="prdPassword.valid"[(ngModel)]="user.Password" required minlength="1" name="Password" 
+        id="prdPassword" class="form-control" placeholder="" aria-describedby="helpId">
+      </div>
+  
+      <button type="submit" [disabled]="frm.invalid" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+  <hr>

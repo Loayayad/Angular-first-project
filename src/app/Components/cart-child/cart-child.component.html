@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th>SN.</th>
+            <th> Name</th>
+            <th> Price</th>
+            <th>Available Quantity</th>
+            <th>Items count</th>
+            <th>Details</th>
+            <th>Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let prd of getProductsByCatID(); let SN=index"> -->
+        <tr *ngFor="let prd of ProductListOfSelCat; let SN=index"
+        [ngStyle]="{'background-color':prd.Quantity ===1 ? 'yellow':'',
+                    'display':prd.Quantity < 1 ? 'none':''}">
+            <td>{{SN+1}}</td>
+            <td>{{prd.Name}}</td>
+            <td>{{prd.Price | currency: 'EGP'}}</td>
+            <td>{{prd.Quantity}}</td>
+            <td><input #ItemsCount class="from-control" type="number" value="1"></td>
+            <td><button class="btn btn-primary" (click)="viewProduct(prd.ID)">Details</button></td>
+            <td><button class="btn btn-primary" (click)="CalcTotalPrice(prd,prd.Price, ItemsCount.value)">Buy</button></td>
+        </tr>
+    </tbody>
+</table>
+<div>Total price (In Details): {{OrderTotalPrice}}</div>
